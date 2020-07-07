@@ -111,7 +111,7 @@ void compute(Graph<Empty> * graph, int iterations) {
     active
   );
   if (graph->partition_id==0) {
-    //printf("pr_sum=%lf\n", pr_sum);
+    printf("pr_sum=%lf\n", pr_sum);
   }
 
   graph->gather_vertex_array(curr, 0);
@@ -142,6 +142,9 @@ int main(int argc, char ** argv) {
   int iterations = std::atoi(argv[3]);
 
   compute(graph, iterations);
+  for (int run=0;run<5;run++) {
+    compute(graph, iterations);
+  }
 
   delete graph;
   return 0;

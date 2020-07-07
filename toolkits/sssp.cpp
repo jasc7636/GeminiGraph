@@ -33,11 +33,11 @@ void compute(Graph<Weight> * graph, VertexId root) {
   graph->fill_vertex_array(distance, (Weight)1e9);
   distance[root] = (Weight)0;
   VertexId active_vertices = 1;
-
+  
   for (int i_i=0;active_vertices>0;i_i++) {
-    //if (graph->partition_id==0) {
-      //printf("active(%d)>=%u\n", i_i, active_vertices);
-    //}
+    if (graph->partition_id==0) {
+      printf("active(%d)>=%u\n", i_i, active_vertices);
+    }
     active_out->clear();
     active_vertices = graph->process_edges<VertexId,Weight>(
       [&](VertexId src){
@@ -118,6 +118,9 @@ int main(int argc, char ** argv) {
   VertexId root = std::atoi(argv[3]);
 
   compute(graph, root);
+  for (int run=0;run<5;run++) {
+    compute(graph, root);
+  }
 
   delete graph;
   return 0;
